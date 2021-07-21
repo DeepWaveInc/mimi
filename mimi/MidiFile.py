@@ -523,9 +523,9 @@ class MidiFile(mido.MidiFile):
             if _platform == "linux" or _platform == "linux2" or _platform == "Linux":
                 # use -map_channel 0.0.0 to map left channel to mono tone mp3 file
                 os.system(
-                    f"timidity -c {cfg_file} {tmp_file} -Ow -o - | ffmpeg -t {total_time} -i - -f mp3 -ar {sr} -ab 256k -map_channel 0.0.0 {filename}")
+                    f"timidity -c '{cfg_file}' '{tmp_file}' -Ow -o - | ffmpeg -t {total_time} -i - -f mp3 -ar {sr} -ab 256k -map_channel 0.0.0 '{filename}'")
             else:
-                os.system(f"timidity -c {cfg_file} {tmp_file} -Ow -o - | ffmpeg -t {total_time} -i - -f mp3 -ar {sr} -ab 256k {filename}")
+                os.system(f"timidity -c '{cfg_file}' '{tmp_file}' -Ow -o - | ffmpeg -t {total_time} -i - -f mp3 -ar {sr} -ab 256k '{filename}'")
         except Exception:
             os.remove(tmp_file)
             os.removedirs(tmp_dir)
